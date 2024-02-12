@@ -1,0 +1,83 @@
+.content-main-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 30px;
+ 
+}
+
+.content-box {
+  width: 100%;
+  max-width: 800px; /* Adjust max-width as needed */
+  margin-bottom: 20px;
+}
+
+
+
+
+.MainLordKrishnaImg {
+  width: 80%;
+  height: auto;
+  /* margin-left: 6em; */
+  padding: 1em;
+}
+.box {
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+/* .loadingimg{
+  height: 200px;
+  width: 200px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+} */
+
+.soclial i{
+  padding: 10px;
+  font-weight: 900;
+  font-size: xx-large;
+}
+.whatsaap{
+  color: rgb(8, 150, 8);
+  cursor: pointer;
+  
+}
+
+.whatsaap:hover{
+  color: rgb(95, 229, 95);
+  cursor: pointer;
+}
+.facebook{
+  color: rgb(23, 23, 195);
+  cursor: pointer;
+  
+}
+.facebook:hover{
+  color: rgb(79, 170, 223);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .content-main-box {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+ 
+  .content-box {
+    width: 45%; 
+    margin-bottom: 0;
+  }
+}
+/* responsive slok box */
+@media only screen and (max-width: 600px) {
+  .box {
+    width: 100%; /* Take full width on small screens */
+    margin: 10px 0; /* Add some spacing */
+  }
+}
