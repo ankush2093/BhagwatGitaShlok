@@ -13,17 +13,18 @@ const Navbar = () => {
      <Link to='/'> <img src={logo} alt="Logo" /></Link>
       
       </span>
-    <ul className="nav-links">
-      <li>
-       <NavLink exact to="/"> <a>Home</a></NavLink>
-      </li>
-      <li>
-      <NavLink exact to="moreslok">  <a>More Slok</a></NavLink>
-      </li>
-      <li>
-        <NavLink exact to="about"><a>About</a></NavLink>
-      </li>
-    </ul>
+      <ul className="nav-links">
+  <li>
+    <NavLink exact to="/">Home</NavLink>
+  </li>
+  <li>
+    <NavLink exact to="/moreslok">More Slok</NavLink>
+  </li>
+  <li>
+    <NavLink exact to="/about">About</NavLink>
+  </li>
+</ul>
+
   </div>
 </nav>
 

@@ -4,12 +4,13 @@
   align-items: center;
   padding: 20px;
   margin: 30px;
- 
+
 }
 
 .content-box {
   width: 100%;
-  max-width: 800px; /* Adjust max-width as needed */
+  max-width: 800px;
+  /* Adjust max-width as needed */
   margin-bottom: 20px;
 }
 
@@ -17,16 +18,30 @@
 
 
 .MainLordKrishnaImg {
-  width: 80%;
+  width: 65%;
   height: auto;
   /* margin-left: 6em; */
   padding: 1em;
+  margin-bottom: 2rem;
 }
+
 .box {
   background-color: #f0f0f0;
   border: 2px solid #ccc;
   padding: 20px;
+
   text-align: center;
+}
+
+/* home page */
+.vertical-line {
+  border-left: 2px solid rgb(205, 56, 56);
+  /* border-radius: 5rem; */
+  background-color: rgb(93, 220, 245);
+  height: 100%;
+  /* Adjust as needed */
+  margin: 0 50px;
+  /* Adjust as needed */
 }
 
 /* .loadingimg{
@@ -37,27 +52,45 @@
   justify-content: center;
 } */
 
-.soclial i{
+
+
+.speak-button {
+  background: darkmagenta;
+  color: white;
+  border-radius: 5px;
+  transition: transform 300ms;
+}
+
+.speak-button:hover {
+  transform: scale(0.9);
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.soclial i {
   padding: 10px;
   font-weight: 900;
   font-size: xx-large;
 }
-.whatsaap{
+
+.whatsaap {
   color: rgb(8, 150, 8);
   cursor: pointer;
-  
+
 }
 
-.whatsaap:hover{
+.whatsaap:hover {
   color: rgb(95, 229, 95);
   cursor: pointer;
 }
-.facebook{
+
+.facebook {
   color: rgb(23, 23, 195);
   cursor: pointer;
-  
+
 }
-.facebook:hover{
+
+.facebook:hover {
   color: rgb(79, 170, 223);
   cursor: pointer;
 }
@@ -68,16 +101,19 @@
     justify-content: space-between;
   }
 
- 
+
   .content-box {
-    width: 45%; 
+    width: 45%;
     margin-bottom: 0;
   }
 }
+
 /* responsive slok box */
 @media only screen and (max-width: 600px) {
   .box {
-    width: 100%; /* Take full width on small screens */
-    margin: 10px 0; /* Add some spacing */
+    width: 100%;
+    /* Take full width on small screens */
+    margin: 10px 0;
+    /* Add some spacing */
   }
 }

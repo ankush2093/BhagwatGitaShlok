@@ -2,10 +2,14 @@ import LordKrishna from '../img/krishnag.png';
 import '../css/Homepage.css';
 import React, { useState, useEffect } from 'react';
 import Music from './Music';
+import '../App.css'
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(null);
+    //  const [value, setValue] = useState('');
+    const { speak } = useSpeechSynthesis();
 
     const getShlok = () => {
         setLoading(true);
@@ -32,9 +36,12 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        getShlok(); // Fetch shlok when component mounts
+        getShlok();
     }, []);
 
+    const speakSlowly = (text) => {
+        speak({ text, rate: 0.6 }); // Set rate to 0.5 for slower speech
+    };
 
     return (
         <div className='content-main-box'>
@@ -55,9 +62,38 @@ const HomePage = () => {
                             <h4>आज का श्लोक</h4><hr></hr>
                             <h2>Chapter {data.chapter}, Verse {data.verse}</h2>
                             <h4 style={{ fontWeight: 'bold' }}>{data.slok}</h4>
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-12 col-md">
+                                        <p className='HindiTranslation'>
+                                            <span style={{ fontWeight: 'bold' }}>Hindi Translation </span>{data.tej?.ht}
+                                            <button className='speak-button' onClick={() => speak({ text: data.tej?.ht })}>
+                                            <i class="fa-solid fa-volume-high"></i> Speak</button>
+                                        </p>
+                                    </div>
 
-                            <p className='HindiTranslation'><span style={{ fontWeight: 'bold' }}>Hindi Translation </span>{data.tej?.ht}</p>
-                            <p className='HindiTranslation'><span style={{ fontWeight: 'bold' }}>English Translation </span>{data.siva?.et}</p>
+
+                                    <div className="col-auto d-none d-md-block">
+                                        <div className="vertical-line"></div>
+                                    </div>
+
+
+                                    <div className="col-12 col-md">
+                                        <p className='HindiTranslation'>
+                                            <span style={{ fontWeight: 'bold' }}>English Translation</span>{data.siva?.et}
+                                            {/* <button onClick={() => speak({ text: data.siva?.et })}>Speak</button> */}
+                                            <button className='speak-button' onClick={() => speakSlowly(data.siva?.et)}>
+                                            <i class="fa-solid fa-volume-high"></i> Speak </button>
+                                           
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
 
                             <div className='soclial'>
                                 <i className="fa-brands fa-square-whatsapp whatsaap"></i>
@@ -78,7 +114,9 @@ const HomePage = () => {
                 <Music></Music>
 
             </div>
-           
+
+
+
         </div>
     );
 }

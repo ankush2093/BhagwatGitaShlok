@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Accordion from "react-bootstrap/Accordion";
-import Modal from "react-bootstrap/Modal";
-import ListGroup from "react-bootstrap/ListGroup";
+import "../css/Slokcard.css";
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const Slokcard = () => {
   const [chapters, setChapters] = useState([]);
-  const [show, setShow] = useState(false);
-  const [selectedChapter, setSelectedChapter] = useState(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = (chapter) => {
-    setSelectedChapter(chapter);
-    setShow(true);
-  };
+  const [expandedChapterIndex, setExpandedChapterIndex] = useState(null);
+  
+  const { speak } = useSpeechSynthesis();
 
   useEffect(() => {
     const fetchChapters = async () => {
       try {
         const response = await axios.get("https://bhagavadgitaapi.in/chapters");
-        console.log("Current Chapter response", response.data);
         setChapters(response.data);
       } catch (error) {
         console.error("Error", error);
@@ -30,62 +22,35 @@ const Slokcard = () => {
     fetchChapters();
   }, []);
 
+  const handleToggleChapter = (index) => {
+    setExpandedChapterIndex(index === expandedChapterIndex ? null : index);
+  };
+
+  const speakSlowly = (text) => {
+    speak({ text, rate: 0.5 }); // Set rate to 0.5 for slower speech
+  };
+
   return (
-    <div>
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header>
-          <Modal.Title className="text-center">
-            All Shlok From Chapter {selectedChapter?.chapter_number}
-          </Modal.Title>
-        </Modal.Header>
+    <div className="slok-card-container">
+      {chapters.map((chapter, index) => (
+        <div key={index} className="slok-card">
+          <h2>{chapter.name}</h2>
+          <p>Chapter Number: {chapter.chapter_number}</p>
+          <p>Verses Count: {chapter.verses_count}</p>
+          <div className="dropdown">
+            <button className="dropbtn" onClick={() => handleToggleChapter(index)}>
+              View More
+            </button>
+            {expandedChapterIndex === index && (
+              <div className="dropdown-content">
+                <p>Summary (English): {chapter.summary.en}</p>
+                <button className="speak-button" onClick={() => speakSlowly(chapter.summary.en)}> <i class="fa-solid fa-volume-high"></i> Speak</button>
+                <p>Summary (Hindi): {chapter.summary.hi}</p>
 
-
-        <Modal.Body>
-          <ListGroup>
-            {/* Render shloks here */}
-
-          </ListGroup>
-        </Modal.Body>
-
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {chapters.map((chapter) => (
-       
-        <div key={chapter.chapter_number} className="card border-warning">
-          <div className="card-body">
-         <h5 className="card-title"> {chapter.chapter_number}. {chapter.name}</h5>
-         <h5 className="card-title">{chapter.meaning.en} / {chapter.meaning.hi}  </h5>
-            <p className="card-text">
-              <Accordion>
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>Hindi Summary</Accordion.Header>
-                  <Accordion.Body>
-                    <b>{chapter.summary?.hi}</b>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>English Summary</Accordion.Header>
-                  <Accordion.Body>
-                    <b>{chapter.summary?.en}</b>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-            </p>
-            <p className="card-text text-center">
-              <button className="btn btn-outline-danger" onClick={() => handleShow(chapter)}>
-                Read Sholks
-              </button>
-            </p>
+              </div>
+            )}
           </div>
+          <hr />
         </div>
       ))}
     </div>
@@ -93,8 +58,6 @@ const Slokcard = () => {
 };
 
 export default Slokcard;
-
-
 
 
 

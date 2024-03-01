@@ -59,7 +59,7 @@
 //       </Modal>
 
 //       {chapters.map((chapter) => (
-       
+
 //         <div key={chapter.chapter_number} className="card border-warning">
 //           <div className="card-body">
 //          <h5 className="card-title"> {chapter.chapter_number}. {chapter.name}</h5>
@@ -101,14 +101,18 @@
 import React from 'react'
 import Slokcard from './Slokcard'
 
-const Moreslok = () => {
+const Moreslok = (props) => {
   return (
     <div>
 
-      <h1 className='display-2'>Chapters / अध्याय</h1>
-      <Slokcard></Slokcard>
-    </div>
-  )
+      
+
+        <Slokcard></Slokcard>
+      </div>
+
+      
+
+      )
 }
 
-export default Moreslok
+      export default Moreslok
