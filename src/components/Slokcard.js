@@ -6,13 +6,17 @@ import { useSpeechSynthesis } from 'react-speech-kit';
 const Slokcard = () => {
   const [chapters, setChapters] = useState([]);
   const [expandedChapterIndex, setExpandedChapterIndex] = useState(null);
-  
+  // Set base URL for Axios
+
+ axios.defaults.baseURL = "https://bhagvadgitabackend.onrender.com/gita/";
+
+// Now, you can make requests without repeating the domain
   const { speak } = useSpeechSynthesis();
 
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const response = await axios.get("https://bhagavadgitaapi.in/chapters");
+        const response = await axios.get("chapters");
         setChapters(response.data);
       } catch (error) {
         console.error("Error", error);
@@ -27,7 +31,7 @@ const Slokcard = () => {
   };
 
   const speakSlowly = (text) => {
-    speak({ text, rate: 0.5 }); // Set rate to 0.5 for slower speech
+    speak({ text, rate: 0.5 });
   };
 
   return (
@@ -58,6 +62,4 @@ const Slokcard = () => {
 };
 
 export default Slokcard;
-
-
 
