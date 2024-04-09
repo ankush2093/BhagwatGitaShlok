@@ -7,7 +7,7 @@
   
   .slok-card {
     width: calc(100% - 20px); /* Adjust as needed */
-    max-width: 300px; /* Adjust as needed */
+    max-width: 400px; /* Adjust as needed */
     padding: 20px;
     margin: 10px;
     border: 1px solid #ccc;
